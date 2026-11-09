@@ -1,0 +1,17 @@
+model:
+  provider: ollama            # ollama | groq (interchangeable)
+  name: llama3.1:8b
+  base_url: http://localhost:11434
+  temperature: 0.0
+  timeout_s: 60
+
+agent:
+  max_iterations: 8
+  tool_timeout_s: 10
+
+rag:
+  chunk_size: 500
+  chunk_overlap: 50
+  top_k: 4
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  persist_dir: ./chroma_db
