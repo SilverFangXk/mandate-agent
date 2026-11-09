@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+config.yaml
+mlruns/
+.chroma/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/

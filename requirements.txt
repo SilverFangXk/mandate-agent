@@ -1,0 +1,58 @@
+# =============================================================
+# mandate-agent : dépendances du projet
+# Python recommandé : 3.12 (numpy 2.5 exige >= 3.12)
+# Installation : pip install -r requirements.txt
+# Après une installation réussie : pip freeze > requirements.lock.txt
+# =============================================================
+
+# --- Modèle de langage (interchangeable via config.yaml) ------
+groq==1.7.0                  # API Groq (cloud)
+ollama==0.6.3                # client Ollama (modèle local quantifié)
+
+# --- Configuration, validation des arguments d'outils ----------
+pydantic==2.14.3             # schémas d'arguments des outils, validation des appels
+pydantic-settings==2.16.2    # chargement/validation de config.yaml et .env
+pyyaml==6.0.3                # lecture de config.yaml
+python-dotenv==1.2.4         # clés API dans .env (jamais commité)
+
+# --- Robustesse de la boucle d'agent ---------------------------
+tenacity==9.2.1              # retry avec backoff, timeouts
+
+# --- Traçabilité (journaux JSON structurés) --------------------
+structlog==26.1.0
+
+# --- RAG : index vectoriel + embeddings + extraction -----------
+chromadb==1.5.9              # index unique, filtrage par métadonnées (client_id, access_level)
+sentence-transformers==6.2.0 # embeddings (ex. multilingual-e5-small : documents en français)
+pypdf==7.0.0                 # extraction du texte des mandats PDF
+
+# --- Génération des données synthétiques -----------------------
+reportlab==5.1.0             # création des mandats en PDF
+pandas==3.1.1                # portefeuilles, prix, calcul des expositions
+numpy==2.5.4
+
+# --- Qualité des données (quality gate "Données") --------------
+pandera==0.35.0              # schéma des CSV, valeurs manquantes, doublons
+
+# --- MLOps : suivi d'expériences et versionnement --------------
+mlflow==3.18.0               # paramètres, métriques, version du corpus
+dvc==3.67.1                  # versionnement des données et du jeu d'évaluation
+
+# --- Déploiement local + endpoint de santé ---------------------
+fastapi==0.162.2
+uvicorn==0.54.0
+httpx==0.28.1                # appels HTTP et TestClient pour les tests d'intégration
+
+# --- Monitoring (tableau de bord simple) -----------------------
+matplotlib==3.11.2
+
+# --- Tests et quality gates ------------------------------------
+pytest==9.2.0
+pytest-cov==7.1.0
+ruff==0.17.4                 # lint + format
+mypy==2.4.1                  # typage statique (optionnel mais utile)
+
+# --- Sécurité (secrets, dépendances) ---------------------------
+pip-audit==2.10.1            # vulnérabilités des dépendances
+detect-secrets==1.5.0        # détection de clés/secrets dans le dépôt
+bandit==1.9.4                # analyse de sécurité du code Python
